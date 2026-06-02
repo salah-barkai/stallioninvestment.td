@@ -37,7 +37,6 @@ export default function Projects() {
   }))
 
   const displayProjects = projects.length > 0 ? projects : fallbackProjects
-  const isUsingFallback = projects.length === 0
   const inProgressProjects = displayProjects.filter((project) => project.status === 'in_progress')
   const filteredProjects = displayProjects.filter((project) => {
     return selectedStatus === 'Tous' || project.status === selectedStatus
@@ -169,11 +168,6 @@ export default function Projects() {
       {/* Filters */}
       <section className="py-5 bg-white border-b sticky top-16 z-30 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {isUsingFallback && (
-            <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-4 text-amber-700">
-              Affichage de projets locaux par défaut : connexion Supabase indisponible ou aucune donnée distante.
-            </div>
-          )}
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
             <div className="flex items-center gap-2 text-gray-700">
               <div className="w-10 h-10 bg-gold-100 rounded-lg flex items-center justify-center">
