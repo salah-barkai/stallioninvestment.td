@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { MapPin, Calendar, CheckCircle2, ArrowRight, Filter, Plane, Building2, Home, Leaf, Mountain, Briefcase, Zap } from 'lucide-react'
-import { COMPANY_INFO } from '../data/constants'
+import { COMPANY_INFO, PROJECTS as SAMPLE_PROJECTS } from '../data/constants'
 import { Link } from 'react-router-dom'
 import { useProjects } from '../lib/supabase'
 
-const categories = ['Tous', 'Infrastructures', 'Aviation', 'Immobilier', 'Agriculture', 'Ressources Naturelles', 'Zones Économiques']
 const statusOptions = [
   { value: 'Tous', label: 'Tous' },
   { value: 'completed', label: 'Terminé' },
@@ -14,7 +13,6 @@ const statusOptions = [
 ]
 
 export default function Projects() {
-  const [selectedCategory, setSelectedCategory] = useState('Tous')
   const [selectedStatus, setSelectedStatus] = useState('Tous')
   const { projects, loading, error } = useProjects()
   
@@ -29,6 +27,21 @@ export default function Projects() {
     'in_progress': 'En cours',
     'planned': 'Planifié'
   }
+
+  const fallbackProjects = SAMPLE_PROJECTS.map((project) => ({
+    ...project,
+    images: project.image ? [project.image] : ['/placeholder.jpg'],
+    progress: project.progress ?? 0,
+    investment: project.investment ?? 0,
+    surface: project.surface ?? 0
+  }))
+
+  const displayProjects = projects.length > 0 ? projects : fallbackProjects
+  const isUsingFallback = projects.length === 0
+  const inProgressProjects = displayProjects.filter((project) => project.status === 'in_progress')
+  const filteredProjects = displayProjects.filter((project) => {
+    return selectedStatus === 'Tous' || project.status === selectedStatus
+  })
   
   if (loading) {
     return (
@@ -55,13 +68,6 @@ export default function Projects() {
       </div>
     )
   }
-
-  const filteredProjects = projects.filter(project => {
-    const categoryMatch = selectedCategory === 'Tous' || project.status === selectedCategory
-    const statusMatch = selectedStatus === 'Tous' || project.status === selectedStatus
-    return categoryMatch && statusMatch
-  })
-
 
   return (
     <div className="pt-20">
@@ -163,6 +169,11 @@ export default function Projects() {
       {/* Filters */}
       <section className="py-5 bg-white border-b sticky top-16 z-30 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {isUsingFallback && (
+            <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-4 text-amber-700">
+              Affichage de projets locaux par défaut : connexion Supabase indisponible ou aucune donnée distante.
+            </div>
+          )}
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
             <div className="flex items-center gap-2 text-gray-700">
               <div className="w-10 h-10 bg-gold-100 rounded-lg flex items-center justify-center">
@@ -171,20 +182,6 @@ export default function Projects() {
               <span className="font-semibold text-gray-900">Filtrer les projets</span>
             </div>
             <div className="flex flex-wrap gap-4">
-              {/* Category Filter */}
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-500 font-medium">Catégorie:</span>
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-4 py-2 border-2 border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 bg-white hover:border-gold-300 transition-colors"
-                >
-                  {categories.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
-                  ))}
-                </select>
-              </div>
-              {/* Status Filter */}
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-500 font-medium">Statut:</span>
                 <select
@@ -286,6 +283,48 @@ export default function Projects() {
           )}
         </div>
       </section>
+
+      {inProgressProjects.length > 0 && (
+        <section className="pb-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <span className="text-gold-500 font-semibold text-sm uppercase tracking-widest">Focus</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">Projets en cours</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto mt-3">
+                Découvrez nos projets actuellement en progression, suivis avec rigueur et transparence.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {inProgressProjects.map((project, index) => (
+                <div key={`in-progress-${project.id}-${index}`} className="rounded-3xl border border-gray-200 bg-gray-50 p-6 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                  <div className="mb-4 overflow-hidden rounded-3xl bg-white">
+                    <img
+                      src={project.images[0] || '/placeholder.jpg'}
+                      alt={project.title}
+                      className="h-52 w-full object-cover"
+                    />
+                  </div>
+                  <div className="mb-3 text-xs uppercase tracking-[0.2em] text-gold-600 font-semibold">En cours</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                  <p className="text-gray-600 mb-4 line-clamp-3">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.features.slice(0, 3).map((feature, i) => (
+                      <span key={i} className="inline-flex items-center gap-2 rounded-full bg-gold-100 px-3 py-2 text-xs font-medium text-gold-700">
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-sm text-gray-500 flex flex-wrap gap-4">
+                    <span>{project.location}</span>
+                    <span>{project.year}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-br from-gray-50 via-gold-50/30 to-white">
