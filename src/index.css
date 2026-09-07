@@ -20,6 +20,69 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-700;
   }
+
+  /* Marquee défilant (bandeau partenaires) */
+  .animate-marquee {
+    animation: marquee 32s linear infinite;
+  }
+  .marquee-pause:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  /* Balayage lumineux au survol */
+  .shine-sweep::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.18) 45%,
+      rgba(255, 255, 255, 0.35) 50%,
+      rgba(255, 255, 255, 0.18) 55%,
+      transparent 100%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.9s ease;
+    pointer-events: none;
+  }
+  .group:hover .shine-sweep::after {
+    transform: translateX(120%);
+  }
+
+  .animate-float-slow {
+    animation: floatSlow 9s ease-in-out infinite;
+  }
+  .animate-float-slower {
+    animation: floatSlow 14s ease-in-out infinite;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -28px, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-float-slow,
+  .animate-float-slower {
+    animation: none;
+  }
 }
 
 /* Custom scrollbar for gold theme */

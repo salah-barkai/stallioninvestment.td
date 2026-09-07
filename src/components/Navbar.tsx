@@ -24,52 +24,32 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300',
+        isScrolled ? 'shadow-lg' : 'shadow-md'
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <div className="relative h-20 w-20 rounded-xl overflow-hidden">
+          <Link to="/" className="flex items-center" aria-label="Stallion Investment — Accueil">
+            <div className="relative h-20 w-20 lg:h-24 lg:w-24 overflow-hidden">
               <img
                 src="/logo.png"
                 alt="Stallion Investment"
                 className="h-full w-full object-contain"
               />
             </div>
-            <div className="hidden sm:block">
-              <span className={cn(
-                'font-bold text-lg block leading-tight transition-colors',
-                isScrolled ? 'text-gray-900' : 'text-white'
-              )}>
-                {COMPANY_INFO.name}
-              </span>
-              <span className={cn(
-                'text-xs block transition-colors',
-                isScrolled ? 'text-gray-600' : 'text-white/80'
-              )}>
-                Investment
-              </span>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 className={cn(
-                  'text-sm font-medium transition-colors hover:text-gold-500',
-                  location.pathname === link.href
-                    ? 'text-gold-600'
-                    : isScrolled
-                    ? 'text-gray-700'
-                    : 'text-white'
+                  'text-sm font-medium transition-colors hover:text-gold-600',
+                  location.pathname === link.href ? 'text-gold-600' : 'text-gray-700'
                 )}
               >
                 {link.label}
@@ -81,10 +61,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={`tel:${COMPANY_INFO.phone}`}
-              className={cn(
-                'flex items-center gap-2 text-sm font-medium transition-colors',
-                isScrolled ? 'text-gray-700' : 'text-white'
-              )}
+              className="flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-gold-600"
             >
               <Phone className="w-4 h-4" />
               {COMPANY_INFO.phoneDisplay}
@@ -100,10 +77,8 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={cn(
-              'lg:hidden p-2 rounded-lg transition-colors',
-              isScrolled ? 'text-gray-900' : 'text-white'
-            )}
+            className="lg:hidden p-2 rounded-lg text-gray-900 transition-colors"
+            aria-label="Menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

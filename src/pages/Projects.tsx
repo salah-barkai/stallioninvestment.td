@@ -31,12 +31,13 @@ export default function Projects() {
   const fallbackProjects = SAMPLE_PROJECTS.map((project) => ({
     ...project,
     images: project.image ? [project.image] : ['/placeholder.jpg'],
-    progress: project.progress ?? 0,
-    investment: project.investment ?? 0,
-    surface: project.surface ?? 0
+    progress: 0,
+    investment: 0,
+    surface: 0
   }))
 
-  const displayProjects = projects.length > 0 ? projects : fallbackProjects
+  const usingFallback = error != null || projects.length === 0
+  const displayProjects = usingFallback ? fallbackProjects : projects
   const inProgressProjects = displayProjects.filter((project) => project.status === 'in_progress')
   const filteredProjects = displayProjects.filter((project) => {
     return selectedStatus === 'Tous' || project.status === selectedStatus
@@ -44,7 +45,7 @@ export default function Projects() {
   
   if (loading) {
     return (
-      <div className="pt-20">
+      <div className="pt-24">
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-600 mx-auto mb-4"></div>
@@ -55,21 +56,17 @@ export default function Projects() {
     )
   }
   
-  if (error) {
-    return (
-      <div className="pt-20">
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            <p className="text-red-600 mb-2">Erreur lors du chargement des projets</p>
-            <p className="text-gray-500 text-sm">{error.message}</p>
+  return (
+    <div className="pt-24">
+      {error && (
+        <div className="bg-amber-50 border-b border-amber-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <p className="text-sm text-amber-800 text-center">
+              Connexion à la base de données indisponible — affichage des projets enregistrés localement.
+            </p>
           </div>
         </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="pt-20">
+      )}
       {/* Hero */}
       <section className="bg-gradient-to-br from-gold-900 via-black to-gold-800 py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -166,7 +163,7 @@ export default function Projects() {
       </section>
 
       {/* Filters */}
-      <section className="py-5 bg-white border-b sticky top-16 z-30 shadow-sm">
+      <section className="py-5 bg-white border-b sticky top-20 lg:top-24 z-30 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
             <div className="flex items-center gap-2 text-gray-700">

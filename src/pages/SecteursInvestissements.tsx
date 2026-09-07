@@ -282,7 +282,7 @@ const investmentSectors = [
 
 export default function SecteursInvestissements() {
   return (
-    <div className="pt-20">
+    <div className="pt-24">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-gold-900 via-black to-gold-800 py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -294,12 +294,12 @@ export default function SecteursInvestissements() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/30 mb-6">
               <TrendingUp className="w-4 h-4 text-gold-400" />
-              <span className="text-gold-300 text-sm font-semibold tracking-wider">SECTEURS D'INVESTISSEMENT</span>
+              <span className="text-gold-300 text-sm font-semibold tracking-wider">INVESTISSEMENTS</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6">
               <span className="bg-gradient-to-r from-white via-gold-200 to-gold-400 bg-clip-text text-transparent">
-                Nos Secteurs d'Investissement
+                Nos Investissements
               </span>
             </h1>
 

@@ -7,6 +7,15 @@ node_modules
 /dist
 /build
 
+# Vercel
+.vercel
+
+# Sources de conventions (images brutes non utilisées par le build)
+/Convention 1
+/Convention 2
+/Convention 3
+/Convention 4
+
 # Environment
 .env
 .env.local
@@ -35,3 +44,5 @@ pnpm-debug.log*
 # Misc
 *.log
 .cache
+
+.vercel

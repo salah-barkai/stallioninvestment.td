@@ -7,9 +7,15 @@ export default function ProjectsPreview() {
   const featuredProjects = PROJECTS.slice(0, 3)
 
   const statusColors: Record<string, string> = {
-    'Terminé': 'bg-green-100 text-green-700',
-    'En cours': 'bg-blue-100 text-blue-700',
-    'Planifié': 'bg-amber-100 text-amber-700'
+    'completed': 'bg-green-100 text-green-700',
+    'in_progress': 'bg-blue-100 text-blue-700',
+    'planned': 'bg-amber-100 text-amber-700'
+  }
+
+  const statusLabels: Record<string, string> = {
+    'completed': 'Terminé',
+    'in_progress': 'En cours',
+    'planned': 'Planifié'
   }
 
   return (
@@ -66,8 +72,8 @@ export default function ProjectsPreview() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                 {/* Status Badge */}
                 <div className="absolute top-4 right-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColors[project.status]}`}>
-                    {project.status}
+                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColors[project.status] || 'bg-gray-100 text-gray-700'}`}>
+                    {statusLabels[project.status] || project.status}
                   </span>
                 </div>
               </div>

@@ -1,0 +1,9 @@
+Convention 1
+Convention 2
+Convention 3
+Convention 4
+dist
+*.md
+insert-projects.js
+insert_projects.sql
+.env.example
