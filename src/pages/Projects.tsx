@@ -45,7 +45,7 @@ export default function Projects() {
   
   if (loading) {
     return (
-      <div className="pt-24">
+      <div className="pt-24 lg:pt-32">
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold-600 mx-auto mb-4"></div>
@@ -57,7 +57,7 @@ export default function Projects() {
   }
   
   return (
-    <div className="pt-24">
+    <div className="pt-24 lg:pt-32">
       {error && (
         <div className="bg-amber-50 border-b border-amber-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">

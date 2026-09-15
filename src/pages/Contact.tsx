@@ -37,7 +37,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="pt-24">
+    <div className="pt-24 lg:pt-32">
       {/* Hero */}
       <section className="bg-gradient-to-br from-gold-900 via-black to-gold-800 py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

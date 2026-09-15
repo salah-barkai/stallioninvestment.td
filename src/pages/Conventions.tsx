@@ -18,7 +18,7 @@ export default function Conventions() {
     )
 
   return (
-    <div className="pt-24">
+    <div className="pt-24 lg:pt-32">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-gold-900 via-black to-gold-800 py-16 lg:py-20">
         <div className="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full bg-gold-600/20 blur-3xl animate-float-slow" />
