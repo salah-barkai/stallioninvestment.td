@@ -182,6 +182,12 @@ export const CONVENTIONS = [
     location: "Maroc",
     year: 2025,
     images: ["/conventions/c4-02.jpeg", "/conventions/c4-01.jpeg"]
+  },
+  {
+    id: "convention-5",
+    location: "Maroc",
+    year: 2025,
+    images: ["/conventions/c5-01.jpeg", "/conventions/c5-02.jpeg", "/conventions/c5-03.jpeg"]
   }
 ] as const
 
@@ -196,7 +202,8 @@ export const PARTNERS = [
     description:
       "Entreprise marocaine de bâtiment et travaux publics spécialisée en génie civil, assainissement et électricité. Fondée en 1999, elle est implantée à Casablanca et El Jadida.",
     website: "https://gtic.ma",
-    websiteLabel: "gtic.ma"
+    websiteLabel: "gtic.ma",
+    logo: "/partners/gtic.jpeg"
   },
   {
     id: "futur-union",
@@ -230,5 +237,30 @@ export const PARTNERS = [
       "Banque participative 100% marocaine, filiale du groupe Attijariwafa Bank (créée en 2017). Forte de plus de 80 agences, elle est spécialiste du financement participatif (Mourabaha) et de l'épargne conforme aux avis du Conseil Supérieur des Oulémas.",
     website: "https://www.bankassafa.com",
     websiteLabel: "bankassafa.com"
+  },
+  {
+    id: "amesis",
+    name: "AMESIS",
+    fullName: "Africa & Middle East Sustainable Investment Solutions",
+    country: "Maroc",
+    sector: "Conseil en investissement & développement de projets",
+    description:
+      "Cabinet basé à Rabat jouant un rôle d'interface stratégique entre investisseurs, porteurs de projets et partenaires institutionnels en Afrique et au Moyen-Orient. Plus de 20 ans d'expérience en développement d'affaires et partenariats internationaux, sur l'industrie, les énergies renouvelables, les technologies et l'immobilier.",
+    website: "",
+    websiteLabel: "",
+    logo: "/partners/amesis.jpeg",
+    pdf: "/documents/amesis-presentation.pdf"
+  },
+  {
+    id: "fsppi",
+    name: "FSPPI",
+    fullName: "Fonds Spécial pour la Préparation des Projets d'Infrastructure au Tchad",
+    country: "Tchad",
+    sector: "Préparation de projets d'infrastructure",
+    description:
+      "Fonds public tchadien dédié à la préparation et à la structuration des projets d'infrastructure, en partenariat avec des institutions telles que l'AUDA-NEPAD pour accompagner le développement des infrastructures nationales.",
+    website: "https://fsppi.org",
+    websiteLabel: "fsppi.org",
+    logo: "/partners/fsppi.png"
   }
 ] as const

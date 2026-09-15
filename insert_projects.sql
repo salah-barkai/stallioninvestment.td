@@ -13,6 +13,7 @@ INSERT INTO projects (title, description, location, status, progress, investment
   ARRAY['https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800'],
   2025
 ),
+
 (
   'Résidence Les Jardins de Chagoua',
   'Ensemble résidentiel haut de gamme de 120 appartements avec piscine, espaces verts et sécurité 24/7.',

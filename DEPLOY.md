@@ -87,6 +87,8 @@ Dans Supabase Studio :
 
 ## ✅ Vérification post-déploiement
 
+
+
 Testez ces fonctionnalités sur le site en production :
 - [ ] La page d'accueil s'affiche
 - [ ] Les secteurs d'investissement s'affichent

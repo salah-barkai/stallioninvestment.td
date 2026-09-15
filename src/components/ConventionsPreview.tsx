@@ -98,9 +98,19 @@ export default function ConventionsPreview() {
                 <div className="shine-sweep pointer-events-none absolute inset-0" />
                 <div className="relative flex-1">
                   <div className="mb-4 flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold-600 to-gold-800 text-white shadow-lg">
-                      <Building2 className="h-6 w-6" />
-                    </div>
+                    {'logo' in partner && partner.logo ? (
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white border border-white/10 shadow-lg overflow-hidden p-1">
+                        <img
+                          src={partner.logo}
+                          alt={`Logo ${partner.name}`}
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold-600 to-gold-800 text-white shadow-lg">
+                        <Building2 className="h-6 w-6" />
+                      </div>
+                    )}
                     <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-gold-300">
                       {partner.country}
                     </span>

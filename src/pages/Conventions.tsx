@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Globe, MapPin, Calendar, ArrowRight, ExternalLink, Building2, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Globe, MapPin, Calendar, ArrowRight, ExternalLink, Building2, X, ChevronLeft, ChevronRight, FileText } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { CONVENTIONS, PARTNERS, CONVENTION_STATEMENT, COMPANY_INFO } from '../data/constants'
 
@@ -80,9 +80,19 @@ export default function Conventions() {
                 <div className="shine-sweep pointer-events-none absolute inset-0" />
                 <div className="relative">
                   <div className="mb-4 flex items-start justify-between gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-gold-600 to-gold-800 text-white shadow-md">
-                      <Building2 className="h-7 w-7" />
-                    </div>
+                    {'logo' in partner && partner.logo ? (
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white border border-gold-100 shadow-md overflow-hidden p-1.5">
+                        <img
+                          src={partner.logo}
+                          alt={`Logo ${partner.name}`}
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-gold-600 to-gold-800 text-white shadow-md">
+                        <Building2 className="h-7 w-7" />
+                      </div>
+                    )}
                     <span className="rounded-full bg-gold-50 px-3 py-1 text-xs font-semibold text-gold-700 border border-gold-100">
                       {partner.country}
                     </span>
@@ -95,17 +105,30 @@ export default function Conventions() {
                   <p className="text-sm font-medium text-gold-600 mb-3">{partner.sector}</p>
                   <p className="text-sm leading-relaxed text-gray-600">{partner.description}</p>
 
-                  {partner.website && (
-                    <a
-                      href={partner.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 hover:text-gold-700"
-                    >
-                      {partner.websiteLabel}
-                      <ExternalLink className="h-3.5 w-3.5" />
-                    </a>
-                  )}
+                  <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+                    {partner.website && (
+                      <a
+                        href={partner.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 hover:text-gold-700"
+                      >
+                        {partner.websiteLabel}
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    )}
+                    {'pdf' in partner && partner.pdf && (
+                      <a
+                        href={partner.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 hover:text-gold-700"
+                      >
+                        Présentation (PDF)
+                        <FileText className="h-3.5 w-3.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
 
                 <span className="absolute bottom-0 left-0 h-1 w-full origin-left scale-x-0 bg-gradient-to-r from-gold-400 to-gold-600 transition-transform duration-300 group-hover:scale-x-100" />
