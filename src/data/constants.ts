@@ -149,6 +149,19 @@ export const NAV_LINKS = [
 export const CONVENTION_STATEMENT =
   "Un partenariat et une convention signés avec des partenaires étrangers."
 
+// Article mis en avant sur la page d'accueil
+export const LATEST_NEWS = {
+  tag: "Actualité",
+  date: "Septembre 2026",
+  location: "N'Djamena, Tchad",
+  title: "Signature d'une nouvelle convention de partenariat",
+  excerpt:
+    "Stallion Investment a réuni ses équipes et ses partenaires autour d'une séance de travail consacrée à la signature d'une nouvelle convention. Une étape de plus dans la structuration de nos projets et le renforcement de notre réseau de partenaires.",
+  image: "/conventions/c6-03.jpeg",
+  link: "/conventions#convention-6",
+  linkLabel: "Voir les photos de la séance"
+} as const
+
 // Séances de signature (photos)
 export const CONVENTIONS = [
   {
@@ -188,6 +201,18 @@ export const CONVENTIONS = [
     location: "Maroc",
     year: 2025,
     images: ["/conventions/c5-01.jpeg", "/conventions/c5-02.jpeg", "/conventions/c5-03.jpeg"]
+  },
+  {
+    id: "convention-6",
+    location: "N'Djamena, Tchad",
+    year: 2026,
+    images: [
+      "/conventions/c6-01.jpeg",
+      "/conventions/c6-02.jpeg",
+      "/conventions/c6-03.jpeg",
+      "/conventions/c6-04.jpeg",
+      "/conventions/c6-05.jpeg"
+    ]
   }
 ] as const
 
