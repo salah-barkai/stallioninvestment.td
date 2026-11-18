@@ -96,19 +96,21 @@ export default function ShareButtons({ pageUrl, videoUrl, title, text }: Props) 
   }
 
   return (
-    <div className="rounded-2xl border border-gold-500/20 bg-white/[0.04] p-6 backdrop-blur-sm">
+    <div className="w-full min-w-0 rounded-2xl border border-gold-500/20 bg-white/[0.04] p-4 backdrop-blur-sm sm:p-6">
       <div className="mb-5 flex items-center gap-3">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold-500/15 text-gold-400">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold-500/15 text-gold-400">
           <Share2 className="h-4 w-4" />
         </span>
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">Partager la vidéo</p>
+        <div className="min-w-0">
+          <p className="text-sm font-semibold uppercase tracking-[0.15em] text-gold-400 sm:tracking-[0.2em]">
+            Partager la vidéo
+          </p>
           <p className="text-xs text-gray-400">Faites découvrir ce projet à vos proches</p>
         </div>
       </div>
 
-      {/* Réseaux */}
-      <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+      {/* Réseaux : 3 par ligne sur mobile, 6 sur une ligne dès que la place le permet */}
+      <div className="grid grid-cols-3 gap-2 sm:grid-cols-6 sm:gap-3">
         {networks.map((n, i) => (
           <motion.a
             key={n.name}
@@ -122,27 +124,30 @@ export default function ShareButtons({ pageUrl, videoUrl, title, text }: Props) 
             whileHover={{ y: -4 }}
             whileTap={{ scale: 0.94 }}
             className={cn(
-              'flex flex-col items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-2 py-3 text-gray-200 transition-colors duration-300 hover:text-white',
+              'flex min-w-0 flex-col items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-1 py-3 text-gray-200 transition-colors duration-300 hover:text-white',
               n.color
             )}
             aria-label={`Partager sur ${n.name}`}
           >
             {n.icon}
-            <span className="text-[11px] font-medium">{n.name}</span>
+            <span className="max-w-full truncate text-[11px] font-medium">{n.name}</span>
           </motion.a>
         ))}
       </div>
 
       {/* Copier les liens */}
       <div className="mt-5 space-y-3">
-        <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-black/40 p-1.5 pl-4">
-          <Link2 className="h-4 w-4 shrink-0 text-gold-500" />
-          <span className="min-w-0 flex-1 truncate text-sm text-gray-300">{pageUrl}</span>
+        {/* Mobile : lien au-dessus, bouton pleine largeur — dès sm : sur une ligne */}
+        <div className="flex flex-col gap-1.5 rounded-xl border border-white/10 bg-black/40 p-1.5 sm:flex-row sm:items-center sm:gap-2 sm:pl-4">
+          <div className="flex min-w-0 flex-1 items-center gap-2 px-2.5 py-1.5 sm:p-0">
+            <Link2 className="h-4 w-4 shrink-0 text-gold-500" />
+            <span className="min-w-0 flex-1 truncate text-sm text-gray-300">{pageUrl}</span>
+          </div>
           <button
             type="button"
             onClick={() => copy(pageUrl, 'page')}
             className={cn(
-              'flex shrink-0 items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold transition-all',
+              'flex w-full shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-4 py-2.5 text-sm font-semibold transition-all sm:w-auto sm:py-2',
               copied === 'page'
                 ? 'bg-green-500 text-white'
                 : 'bg-gradient-to-r from-gold-500 to-gold-700 text-white hover:shadow-[0_0_20px_rgba(245,158,11,0.5)]'
@@ -157,19 +162,25 @@ export default function ShareButtons({ pageUrl, videoUrl, title, text }: Props) 
           <button
             type="button"
             onClick={() => copy(videoUrl, 'video')}
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-gold-500/30 px-4 py-2.5 text-sm font-medium text-gold-300 transition-colors hover:bg-gold-500/10"
+            className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl border border-gold-500/30 px-3 py-2.5 text-center text-sm font-medium text-gold-300 transition-colors hover:bg-gold-500/10"
           >
-            {copied === 'video' ? <Check className="h-4 w-4 text-green-400" /> : <Film className="h-4 w-4" />}
-            {copied === 'video' ? 'Lien de la vidéo copié !' : 'Copier le lien direct de la vidéo'}
+            {copied === 'video' ? (
+              <Check className="h-4 w-4 shrink-0 text-green-400" />
+            ) : (
+              <Film className="h-4 w-4 shrink-0" />
+            )}
+            <span className="min-w-0">
+              {copied === 'video' ? 'Lien de la vidéo copié !' : 'Copier le lien de la vidéo'}
+            </span>
           </button>
 
           {canNativeShare && (
             <button
               type="button"
               onClick={nativeShare}
-              className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-gold-50"
+              className="flex min-w-0 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-3 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-gold-50"
             >
-              <Share2 className="h-4 w-4" />
+              <Share2 className="h-4 w-4 shrink-0" />
               Plus d'options…
             </button>
           )}

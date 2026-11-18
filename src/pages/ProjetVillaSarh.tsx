@@ -124,12 +124,12 @@ export default function ProjetVillaSarh() {
           </motion.div>
 
           {/* Détails + partage */}
-          <div className="mx-auto mt-14 grid max-w-5xl gap-8 lg:grid-cols-5">
+          <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-8 sm:mt-14 lg:grid-cols-5">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="lg:col-span-2"
+              className="min-w-0 lg:col-span-2"
             >
               <h2 className="mb-4 text-xl font-semibold text-white">Le projet</h2>
               <p className="leading-relaxed text-gray-300">{P.description}</p>
@@ -157,7 +157,7 @@ export default function ProjetVillaSarh() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="lg:col-span-3"
+              className="min-w-0 lg:col-span-3"
             >
               <ShareButtons pageUrl={pageUrl} videoUrl={videoUrl} title={`${P.title} — ${P.subtitle}`} text={shareText} />
             </motion.div>
