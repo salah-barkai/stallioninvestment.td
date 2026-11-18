@@ -3,5 +3,8 @@
   "framework": "vite",
   "buildCommand": "vite build",
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/projets/villa-sarh-paris-congo", "destination": "/projets/villa-sarh-paris-congo.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
