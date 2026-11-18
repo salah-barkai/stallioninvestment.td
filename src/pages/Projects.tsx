@@ -4,6 +4,7 @@ import { MapPin, Calendar, CheckCircle2, ArrowRight, Filter, Plane, Building2, H
 import { COMPANY_INFO, PROJECTS as SAMPLE_PROJECTS } from '../data/constants'
 import { Link } from 'react-router-dom'
 import { useProjects } from '../lib/supabase'
+import FeaturedVideoProject from '../components/FeaturedVideoProject'
 
 const statusOptions = [
   { value: 'Tous', label: 'Tous' },
@@ -161,6 +162,9 @@ export default function Projects() {
           </div>
         </div>
       </section>
+
+      {/* Nouveau projet livré (vidéo) */}
+      <FeaturedVideoProject />
 
       {/* Filters */}
       <section className="py-5 bg-white border-b sticky top-20 lg:top-24 z-30 shadow-sm">

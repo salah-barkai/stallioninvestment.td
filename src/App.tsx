@@ -10,6 +10,7 @@ import SecteursInvestissements from './pages/SecteursInvestissements'
 import Conventions from './pages/Conventions'
 import SupabaseTest from './components/SupabaseTest'
 import Admin from './pages/Admin'
+import ProjetVillaSarh from './pages/ProjetVillaSarh'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/projets" element={<Projects />} />
+          <Route path="/projets/villa-sarh-paris-congo" element={<ProjetVillaSarh />} />
           <Route path="/a-propos" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/conventions" element={<Conventions />} />

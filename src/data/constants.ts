@@ -289,3 +289,29 @@ export const PARTNERS = [
     logo: "/partners/fsppi.png"
   }
 ] as const
+
+// Nouveau projet livré — vidéo (fichiers dans public/videos)
+export const FEATURED_VIDEO_PROJECT = {
+  slug: "villa-sarh-paris-congo",
+  path: "/projets/villa-sarh-paris-congo",
+  tag: "Nouveau projet livré",
+  title: "Villa Résidentielle",
+  subtitle: "Sarh · Quartier Paris-Congo",
+  city: "Sarh",
+  district: "Paris-Congo",
+  status: "Terminé",
+  date: "Novembre 2026",
+  description:
+    "Stallion Investment livre une nouvelle villa résidentielle à Sarh, dans le quartier Paris-Congo. Une construction soignée, sécurisée et pensée pour le confort d'une famille, de la structure aux finitions et à l'éclairage extérieur.",
+  highlights: [
+    "Construction neuve clé en main",
+    "Clôture et accès sécurisés",
+    "Éclairage extérieur architectural",
+    "Finitions haut de gamme",
+  ],
+  poster: "/videos/stallion_poster.jpg",
+  videos: {
+    landscape: "/videos/stallion_web_16x9.mp4",
+    vertical: "/videos/stallion_vertical.mp4",
+  },
+} as const
